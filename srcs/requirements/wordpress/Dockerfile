@@ -1,8 +1,11 @@
 FROM debian:trixie
 
+EXPOSE 9000
+
 RUN apt-get update && apt-get install -y \
     php8.2 \
     php8.2-mysql \
+    php8.2-fpm \
     mariadb-client \
     curl \
 && rm -rf /var/lib/apt/lists/*
@@ -16,6 +19,4 @@ RUN mkdir -p /var/www/wordpress && chown wordpress -R /var/www/wordpress
 COPY conf/wordpress.sh /scripts/wordpress.sh
 RUN chmod +x /scripts/wordpress.sh
 
-# USER wordpress
-
-# CMD [ "bash", "-c", "/scripts/wordpress.sh" ]
+CMD [ "bash", "-c", "/scripts/wordpress.sh" ]
