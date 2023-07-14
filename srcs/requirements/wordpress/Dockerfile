@@ -12,19 +12,10 @@ RUN chmod +x wp-cli.phar && mv wp-cli.phar /usr/local/bin/wp-cli.phar
 
 RUN useradd -rm -d /home/wordpress -s /bin/bash wordpress
 RUN mkdir -p /var/www/wordpress && chown wordpress -R /var/www/wordpress
-USER wordpress
-RUN wp core download \
-    --path=/var/www/wordpress
-RUN wp config create \
-    --dbname=$SQL_DATABASE \
-    --dbuser=$SQL_USER \
-    --dbpass=$SQL_PASSWORD \
-    --dbhost=mariadb:3306 \
-    --path=/var/www/wordpress
-RUN wp core install \
-    --url=lorobert.42.fr \
-    --title=lorobert \
-    --admin_user=$WP_USER \
-    --admin_password=WP_PASSWORD \
-    --admin_email=wordpress@lorobert.42.fr \
-    --path=/var/www/wordpress
+
+COPY conf/wordpress.sh /scripts/wordpress.sh
+RUN chmod +x /scripts/wordpress.sh
+
+# USER wordpress
+
+# CMD [ "bash", "-c", "/scripts/wordpress.sh" ]
