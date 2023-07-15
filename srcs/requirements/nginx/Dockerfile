@@ -1,7 +1,5 @@
 FROM debian:trixie
 
-EXPOSE 443
-
 RUN apt-get update && apt-get install -y \
     nginx \
     openssl \
