@@ -8,7 +8,8 @@ RUN apt-get update && apt-get install -y \
 
 COPY conf/50-server.cnf /etc/mysql/mariadb.conf.d/50-server.cnf
 
-COPY conf/mariadb.sh /scripts/mariadb.sh
-RUN chmod +x /scripts/mariadb.sh
+COPY conf/config.sql /scripts/config.sql
 
-CMD [ "bash", "-c", "/scripts/mariadb.sh" ]
+USER mysql
+
+ENTRYPOINT [ "mysqld", "--init-file", "/scripts/config.sql" ]
