@@ -8,6 +8,6 @@ RUN apt-get update && apt-get install -y \
 
 COPY conf/50-server.cnf /etc/mysql/mariadb.conf.d/50-server.cnf
 
-COPY conf/config.sql /scripts/config.sql
+COPY conf/mariadb.sh /scripts/mariadb.sh
 
-ENTRYPOINT [ "mariadb", "<", "/scripts/config.sql" ]
+ENTRYPOINT [ "bash", "/scripts/mariadb.sh" ]
