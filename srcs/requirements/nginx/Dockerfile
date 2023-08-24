@@ -11,7 +11,6 @@ RUN openssl req -x509 -nodes \
     -keyout /etc/nginx/ssl/inception.key \
     -subj "/C=CH/ST=VD/L=Renens/O=42/OU=42/CN=42"
 
-COPY conf/nginx.conf /etc/nginx/nginx.conf
-COPY conf/wordpress.conf /etc/nginx/sites-available/default
+COPY conf/wordpress.conf /etc/nginx/conf.d/nginx.conf
 
 CMD [ "nginx", "-g", "daemon off;" ]
