@@ -12,6 +12,6 @@ RUN openssl req -x509 -nodes \
     -subj "/C=CH/ST=VD/L=Renens/O=42/OU=42/CN=42"
 
 COPY conf/nginx.conf /etc/nginx/nginx.conf
-COPY conf/lorobert.42.fr.conf /etc/nginx/sites-available/default
+COPY conf/wordpress.conf /etc/nginx/sites-available/default
 
 CMD [ "nginx", "-g", "daemon off;" ]

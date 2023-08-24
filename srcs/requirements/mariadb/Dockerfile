@@ -10,6 +10,4 @@ COPY conf/50-server.cnf /etc/mysql/mariadb.conf.d/50-server.cnf
 
 COPY conf/config.sql /scripts/config.sql
 
-USER mysql
-
-ENTRYPOINT [ "mysqld", "--init-file", "/scripts/config.sql" ]
+ENTRYPOINT [ "mariadb", "<", "/scripts/config.sql" ]
