@@ -9,7 +9,7 @@ wp-cli.phar config create \
     --path=/var/www/wordpress \
     --allow-root
 wp-cli.phar core install \
-    --url=lorobert.42.fr \
+    --url=https://lorobert.42.fr \
     --title=lorobert \
     --admin_user=$WP_ADMIN_USERNAME \
     --admin_password=$WP_ADMIN_PASSWORD \
@@ -18,7 +18,7 @@ wp-cli.phar core install \
     --allow-root
 wp-cli.phar user create \
     $WP_USERNAME \
-    $WP_USERNAME@lorobert.42.fr \
+    $WP_EMAIL \
     --role=contributor \
     --user_pass=$WP_PASSWORD \
     --path=/var/www/wordpress \
