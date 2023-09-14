@@ -6,6 +6,8 @@ services:
     env_file:
       - .env
     container_name: mariadb
+    volumes:
+      - mariadb:/var/lib/mysql
     networks:
       - inception
     expose:
@@ -17,22 +19,28 @@ services:
       timeout: 20s
       retries: 5
       start_period: 5s
+
   wordpress:
     build: requirements/wordpress
     env_file:
       - .env
     container_name: wordpress
+    volumes:
+      - wordpress:/var/www/wordpress
     networks:
       - inception
     restart: unless-stopped
     depends_on:
       mariadb:
         condition: service_healthy
+
   nginx:
     build: requirements/nginx
     env_file:
       - .env
     container_name: nginx
+    volumes:
+      - wordpress:/var/www/wordpress
     networks:
       - inception
     ports:
@@ -43,3 +51,15 @@ services:
 
 networks:
   inception:
+
+volumes:
+  mariadb:
+    driver_opts:
+      type: none
+      device: /home/lorobert/data/mariadb
+      o: bind
+  wordpress:
+    driver_opts:
+      type: none
+      device: /home/lorobert/data/wordpress
+      o: bind
