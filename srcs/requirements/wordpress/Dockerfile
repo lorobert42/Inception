@@ -2,7 +2,7 @@ FROM debian:trixie
 
 EXPOSE 9000
 
-RUN apt-get update && apt-get install -y \
+RUN apt-get update && apt-get upgrade && apt-get install -y \
     php8.2 \
     php8.2-mysql \
     php8.2-fpm \
