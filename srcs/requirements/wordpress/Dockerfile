@@ -14,6 +14,7 @@ RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli
 RUN chmod +x wp-cli.phar && mv wp-cli.phar /usr/local/bin/wp-cli.phar
 
 COPY conf/www.conf /etc/php/7.4/fpm/pool.d/www.conf
+RUN mkdir -p /run/php/
 
 RUN useradd -rm -d /home/wordpress -s /bin/bash wordpress
 RUN mkdir -p /var/www/wordpress && chown wordpress -R /var/www/wordpress
