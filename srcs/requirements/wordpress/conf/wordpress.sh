@@ -23,4 +23,4 @@ wp-cli.phar user create \
     --user_pass=$WP_PASSWORD \
     --path=/var/www/wordpress \
     --allow-root
-php-fpm8.2 --nodaemonize
+php-fpm7.4 --nodaemonize
